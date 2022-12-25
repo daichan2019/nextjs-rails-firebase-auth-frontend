@@ -3,6 +3,7 @@ import {
   getRedirectResult,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithRedirect,
   signOut,
 } from 'firebase/auth';
@@ -10,6 +11,7 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
+import { BASE_URL } from 'src/config';
 
 import { authenticateUser } from '@/lib/auth';
 import { auth } from '@/lib/firebase';
@@ -42,14 +44,15 @@ export const useSignUp = () => {
   const router = useRouter();
 
   const signUpWithEmailAndPassword = async (email: string, password: string) => {
-    const user = await createUserWithEmailAndPassword(auth, email, password);
-
-    if (!user) {
-      return;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await sendEmailVerification(userCredential.user, {
+        url: BASE_URL,
+      });
+      Cookies.set('isLoggedIn', 'true', { secure: true });
+    } catch (err) {
+      console.error(err);
     }
-
-    Cookies.set('isLoggedIn', 'true', { secure: true });
-    router.push('/');
   };
 
   return { signUpWithEmailAndPassword };
@@ -81,18 +84,18 @@ export const useSignInWithGoogle = () => {
         // result がある時は認証済み
         // オープンリダイレクタ等を回避するために検証が必要だが、ここでは省略
 
-        const token = await result.user.getIdToken();
-        const res = await authenticateUser(token);
-        const { email, id, name, uid } = res;
-        const repositoryUser = {
-          id,
-          name,
-          email,
-          uid,
-        };
-        setUserState(repositoryUser);
+        // const token = await result.user.getIdToken();
+        // const res = await authenticateUser(token);
+        // const { email, id, name, uid } = res;
+        // const repositoryUser = {
+        //   id,
+        //   name,
+        //   email,
+        //   uid,
+        // };
+        // setUserState(repositoryUser);
         Cookies.set('isLoggedIn', 'true', { secure: true });
-        localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
+        // localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
 
         const redirectUri = router.query['redirect_uri'] as string | undefined;
         router.push(redirectUri || '/');
@@ -130,10 +133,10 @@ export const useAuth = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       // 未ログインの場合
       if (!user) {
-        router.push('/signin');
         setUserState(null);
         localStorage.removeItem('currentUser');
         Cookies.remove('isLoggedIn');
+        router.push('/signin');
         return;
       }
 

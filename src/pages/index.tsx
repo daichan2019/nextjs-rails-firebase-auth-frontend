@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     <WithAuth>
       <div>
         <h1>top page</h1>
-        <p>{currentUser?.name}</p>
+        <p>{currentUser?.email}</p>
         <button onClick={logout}>ログアウトする</button>
       </div>
     </WithAuth>
