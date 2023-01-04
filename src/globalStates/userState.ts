@@ -41,8 +41,6 @@ export const useUserStateMutators = () => {
 };
 
 export const useSignUp = () => {
-  const router = useRouter();
-
   const signUpWithEmailAndPassword = async (email: string, password: string) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -84,18 +82,18 @@ export const useSignInWithGoogle = () => {
         // result がある時は認証済み
         // オープンリダイレクタ等を回避するために検証が必要だが、ここでは省略
 
-        // const token = await result.user.getIdToken();
-        // const res = await authenticateUser(token);
-        // const { email, id, name, uid } = res;
-        // const repositoryUser = {
-        //   id,
-        //   name,
-        //   email,
-        //   uid,
-        // };
-        // setUserState(repositoryUser);
+        const token = await result.user.getIdToken();
+        const res = await authenticateUser(token);
+        const { email, id, name, uid } = res;
+        const repositoryUser = {
+          id,
+          name,
+          email,
+          uid,
+        };
+        setUserState(repositoryUser);
         Cookies.set('isLoggedIn', 'true', { secure: true });
-        // localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
+        localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
 
         const redirectUri = router.query['redirect_uri'] as string | undefined;
         router.push(redirectUri || '/');

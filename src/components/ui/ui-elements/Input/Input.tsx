@@ -36,7 +36,7 @@ export const Input = ({
         type={type}
         placeholder={placeholder}
         className={clsx(
-          'focus:ring-indigo w-full rounded-md border p-2 valid:ring-green-500',
+          'focus:ring-indigo-500 w-full rounded-md border p-2 valid:ring-green-500',
           errorStyle,
         )}
       />
