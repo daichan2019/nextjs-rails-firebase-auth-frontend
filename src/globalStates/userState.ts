@@ -4,6 +4,7 @@ import {
   GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
+  signInWithEmailAndPassword,
   signInWithRedirect,
   signOut,
 } from 'firebase/auth';
@@ -101,6 +102,23 @@ export const useSignInWithGoogle = () => {
     })();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
+};
+
+export const useSignIn = () => {
+  const router = useRouter();
+  const signIn = async (email: string, password: string) => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      Cookies.set('isLoggedIn', 'true', { secure: true });
+      router.push('/');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return {
+    signIn,
+  };
 };
 
 export const useSignOut = () => {

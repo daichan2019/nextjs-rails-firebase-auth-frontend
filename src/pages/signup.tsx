@@ -1,4 +1,5 @@
 import type { NextPage } from 'next';
+import Link from 'next/link';
 import { z } from 'zod';
 
 import { Form } from '@/components/functional/Form';
@@ -81,6 +82,12 @@ const SignUpPage: NextPage = () => {
           );
         }}
       </Form>
+      <p className='mt-5'>
+        すでに会員登録している方は
+        <Link href='/signin' className='text-blue-500 underline decoration-blue-500'>
+          こちら
+        </Link>
+      </p>
     </div>
   );
 };
