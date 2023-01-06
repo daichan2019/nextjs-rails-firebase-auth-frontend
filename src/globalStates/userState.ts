@@ -10,14 +10,15 @@ import {
 } from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { BASE_URL } from 'src/config';
 
 import { authenticateUser } from '@/lib/auth';
 import { auth } from '@/lib/firebase';
+import { catchFirebaseError } from '@/utils/catchFirebaseError';
 
-type UserState = {
+export type UserState = {
   id: number;
   name: string;
   email: string;
@@ -106,18 +107,22 @@ export const useSignInWithGoogle = () => {
 
 export const useSignIn = () => {
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState('');
+
   const signIn = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       Cookies.set('isLoggedIn', 'true', { secure: true });
       router.push('/');
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
+      setErrorMessage(catchFirebaseError(err));
     }
   };
 
   return {
     signIn,
+    errorMessage,
   };
 };
 
@@ -128,8 +133,8 @@ export const useSignOut = () => {
   const logout = () => {
     try {
       signOut(auth).then(() => {
-        setUserState(null);
         router.push('/signin');
+        setUserState(null);
       });
     } catch (err) {
       console.error(err);

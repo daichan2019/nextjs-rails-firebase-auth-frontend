@@ -31,7 +31,7 @@ export const validationSchema = z.object({
 });
 
 const SignInPage: NextPage = () => {
-  const { signIn } = useSignIn();
+  const { errorMessage, signIn } = useSignIn();
   return (
     <div className='max-w-xl px-4 py-12 mx-auto'>
       <h2 className='text-2xl font-bold text-center'>ログイン</h2>
@@ -63,11 +63,11 @@ const SignInPage: NextPage = () => {
               />
               <div className='mt-10 flex justify-center'>
                 <div>
+                  {!!errorMessage && <p className='text-xs text-red-500'>{errorMessage}</p>}
                   <Button isLoading={formState.isSubmitting} type='submit' className='w-full'>
                     ログイン
                   </Button>
-                  <div className='h-5'></div>
-                  <GoogleSignInButton variant='inverse'>
+                  <GoogleSignInButton className='mt-5' variant='inverse'>
                     Googleアカウントでログイン
                   </GoogleSignInButton>
                 </div>

@@ -5,6 +5,7 @@
       "@/components/*": ["./src/components/*"],
       "@/globalStates/*": ["./src/globalStates/*"],
       "@/lib/*": ["./src/lib/*"],
+      "@/utils/*": ["./src/utils/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/public/*": ["./public/*"]
     },

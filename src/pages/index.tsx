@@ -1,18 +1,20 @@
 import type { NextPage } from 'next';
 
 import { WithAuth } from '@/components/functional/WithAuth';
-import { useSignOut, useUserState } from '@/globalStates/userState';
+import { Header } from '@/components/ui/layouts/Header';
+import { Sidebar } from '@/components/ui/layouts/Sidebar';
 
 const Home: NextPage = () => {
-  const currentUser = useUserState();
-  const { logout } = useSignOut();
-
   return (
     <WithAuth>
-      <div>
-        <h1>top page</h1>
-        <p>{currentUser?.email}</p>
-        <button onClick={logout}>ログアウトする</button>
+      <div className='flex-col flex min-h-screen'>
+        <div className='flex flex-1 overflow-x-hidden'>
+          <Sidebar />
+          <div className='w-full'>
+            <Header />
+            <main></main>
+          </div>
+        </div>
       </div>
     </WithAuth>
   );

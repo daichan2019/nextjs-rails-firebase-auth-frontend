@@ -40,7 +40,7 @@ export const Input = ({
           errorStyle,
         )}
       />
-      {!!error && <p className='text-xs text-red-500 empty:hidden'>{error}</p>}
+      {!!error && <p className='text-xs text-red-500'>{error}</p>}
     </div>
   );
 };
