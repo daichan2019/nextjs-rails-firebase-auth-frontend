@@ -38,8 +38,6 @@ const SignInPage: NextPage = () => {
       <Form<SignInFormValues, typeof validationSchema>
         id='signin-form'
         onSubmit={async (data) => {
-          console.log('hogehoge');
-          console.log(data);
           await signIn(data.email, data.password);
         }}
         options={{
