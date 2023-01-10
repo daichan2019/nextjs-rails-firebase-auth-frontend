@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type { ChangeEventHandler, Ref } from 'react';
 
 export type InputProps = {
-  placeholder: string;
+  placeholder?: string;
   error?: string;
   name: string;
   type?: string;
@@ -22,9 +22,7 @@ export const Input = ({
   value: string;
   onChange: ChangeEventHandler<HTMLInputElement>;
 }) => {
-  const errorStyle =
-    error &&
-    'border border-red-500 text-red-900 focus:ring-red-500 focus:border-red-500 dark:border-red-500';
+  const errorStyle = !!error && 'border-red-500 text-red-900 focus:ring-red-500';
 
   return (
     <div>
@@ -36,7 +34,7 @@ export const Input = ({
         type={type}
         placeholder={placeholder}
         className={clsx(
-          'focus:ring-indigo-500 w-full rounded-md border p-2 valid:ring-green-500',
+          'w-full focus:ring-blue-500 focus:border-blue-500 valid:ring-green-500 rounded-md border-gray-300 border p-2',
           errorStyle,
         )}
       />

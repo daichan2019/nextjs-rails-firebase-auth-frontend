@@ -53,14 +53,14 @@ const SignInPage: NextPage = () => {
         {({ control, formState }) => {
           return (
             <>
-              <InputControl placeholder='Email' name='email' type='email' control={control} />
-              <div className='h-5'></div>
-              <InputControl
-                placeholder='Password'
-                name='password'
-                type='password'
-                control={control}
-              />
+              <div className='flex flex-col gap-2'>
+                <p>Email</p>
+                <InputControl name='email' type='email' control={control} />
+              </div>
+              <div className='flex flex-col gap-2 mt-5'>
+                <p>Password</p>
+                <InputControl name='password' type='password' control={control} />
+              </div>
               <div className='mt-10 flex justify-center'>
                 <div>
                   {!!errorMessage && <p className='text-xs text-red-500'>{errorMessage}</p>}
