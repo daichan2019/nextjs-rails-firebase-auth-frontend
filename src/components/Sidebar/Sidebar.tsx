@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { useSignOut } from '@/atoms/user';
+import { useSignOut } from '@/features/auth';
 
 export const Sidebar: FC = () => {
   const { logout } = useSignOut();

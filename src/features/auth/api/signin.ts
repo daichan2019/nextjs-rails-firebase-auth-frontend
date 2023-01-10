@@ -1,6 +1,11 @@
 import axios from 'axios';
 import { onAuthStateChanged } from 'firebase/auth';
-import { getRedirectResult, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import {
+  getRedirectResult,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithRedirect,
+} from 'firebase/auth';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -8,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { useUserStateMutators } from '@/atoms/user';
 import { API_BASE_URL } from '@/config/index';
 import { auth } from '@/lib/firebase';
-import { catchFirebaseError } from '@/utils/catchFirebaseError';
+import { catchFirebaseAuthError } from '@/utils/catch-firebase-auth-error';
 
 export const verifyToken = async (token: string, name = '') => {
   const res = await axios.post(`${API_BASE_URL}/auth/users`, {
@@ -42,7 +47,7 @@ export const useSignIn = () => {
       router.push('/');
     } catch (err: any) {
       console.error(err);
-      setErrorMessage(catchFirebaseError(err));
+      setErrorMessage(catchFirebaseAuthError(err));
     }
   };
 

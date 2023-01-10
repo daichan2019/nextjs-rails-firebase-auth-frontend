@@ -2,11 +2,10 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { z } from 'zod';
 
-import { useSignIn } from '@/atoms/user';
 import { Button } from '@/components/button';
 import { Form } from '@/components/form';
 import { InputControl } from '@/components/input-control';
-import { SignInWithGoogleButton } from '@/features/auth';
+import { SignInWithGoogleButton, useSignIn } from '@/features/auth';
 
 type SignInFormValues = {
   email: string;

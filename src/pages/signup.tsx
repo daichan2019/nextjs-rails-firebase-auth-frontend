@@ -2,11 +2,10 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { z } from 'zod';
 
+import { Button } from '@/components/button';
 import { Form } from '@/components/form';
 import { InputControl } from '@/components/input-control';
-import { Button } from '@/components/button';
-import { GoogleSignInButton } from '@/features/auth/signin-with-google';
-import { useSignUp } from '@/globalStates/user';
+import { SignInWithGoogleButton, useSignUp } from '@/features/auth';
 
 export const validationSchema = z.object({
   email: z
@@ -31,7 +30,7 @@ type SignUpFormValues = {
 };
 
 const SignUpPage: NextPage = () => {
-  const { signUpWithEmailAndPassword } = useSignUp();
+  const { errorMessage, signUpWithEmailAndPassword } = useSignUp();
 
   return (
     <div className='max-w-xl px-4 py-12 mx-auto'>
@@ -54,16 +53,17 @@ const SignUpPage: NextPage = () => {
         {({ control, formState }) => {
           return (
             <>
-              <InputControl placeholder='Email' name='email' type='email' control={control} />
-              <div className='h-5'></div>
-              <InputControl
-                placeholder='Password'
-                name='password'
-                type='password'
-                control={control}
-              />
+              <div className='flex flex-col gap-2'>
+                <p>Email</p>
+                <InputControl name='email' type='email' control={control} />
+              </div>
+              <div className='flex flex-col gap-2 mt-5'>
+                <p>Password</p>
+                <InputControl name='password' type='password' control={control} />
+              </div>
               <div className='mt-10 flex justify-center'>
                 <div>
+                  {!!errorMessage && <p className='text-xs text-red-500'>{errorMessage}</p>}
                   <Button isLoading={formState.isSubmitting} type='submit' className='w-full'>
                     会員登録する
                   </Button>
@@ -73,9 +73,9 @@ const SignUpPage: NextPage = () => {
                     </p>
                   )}
                   <div className='h-5'></div>
-                  <GoogleSignInButton variant='inverse'>
+                  <SignInWithGoogleButton variant='inverse'>
                     Googleアカウントで始める
-                  </GoogleSignInButton>
+                  </SignInWithGoogleButton>
                 </div>
               </div>
             </>
