@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useUserStateMutators } from '@/atoms/user';
 import { verifyToken } from '@/features/auth';
 import { auth } from '@/lib/firebase';
+import { storage } from '@/utils/storage';
 
 export const useAuth = () => {
   const router = useRouter();
@@ -17,14 +18,14 @@ export const useAuth = () => {
       if (!user) {
         router.push('/signin');
         setUserState(null);
-        localStorage.removeItem('currentUser');
+        storage.clearUser();
         Cookies.remove('isLoggedIn');
         return;
       }
 
       // 一度ログインに成功している場合は、localStorageにcurrentUserをsetし、その値をsetUserStateする
-      if (localStorage.getItem('currentUser')) {
-        const loggedInUser = JSON.parse(localStorage.getItem('currentUser') as string);
+      if (storage.getUser()) {
+        const loggedInUser = JSON.parse(storage.getUser());
         setUserState(loggedInUser);
         return;
       }
@@ -51,7 +52,7 @@ export const useAuth = () => {
         console.error(err);
         router.push('/signin');
         setUserState(null);
-        localStorage.removeItem('currentUser');
+        storage.clearUser();
         Cookies.remove('isLoggedIn');
       }
     });

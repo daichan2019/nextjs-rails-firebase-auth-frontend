@@ -14,6 +14,7 @@ import { useUserStateMutators } from '@/atoms/user';
 import { API_BASE_URL } from '@/config/index';
 import { auth } from '@/lib/firebase';
 import { catchFirebaseAuthError } from '@/utils/catch-firebase-auth-error';
+import { storage } from '@/utils/storage';
 
 export const verifyToken = async (token: string, name = '') => {
   const res = await axios.post(`${API_BASE_URL}/auth/users`, {
@@ -82,7 +83,6 @@ export const useSignInWithGoogle = () => {
       } else {
         // result がある時は認証済み
         // オープンリダイレクタ等を回避するために検証が必要だが、ここでは省略
-
         const token = await result.user.getIdToken();
         const res = await verifyToken(token);
         const { email, id, name, uid } = res;
@@ -94,7 +94,7 @@ export const useSignInWithGoogle = () => {
         };
         setUserState(repositoryUser);
         Cookies.set('isLoggedIn', 'true', { secure: true });
-        localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
+        storage.setUser(repositoryUser);
 
         const redirectUri = router.query['redirect_uri'] as string | undefined;
         router.push(redirectUri || '/');

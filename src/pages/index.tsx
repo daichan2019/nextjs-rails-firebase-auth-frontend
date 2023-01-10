@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 import { WithAuth } from '@/features/auth/with-auth';
+import { TaskList } from '@/features/tasks';
 
 const Home: NextPage = () => {
   const tasks = [
@@ -20,16 +21,7 @@ const Home: NextPage = () => {
           <main className='px-4 py-6'>
             <h2 className='text-2xl font-bold'>My Tasks</h2>
             <ul className='flex flex-col gap-4 my-3'>
-              {tasks.map((t) => {
-                return (
-                  <li key={t.id}>
-                    <div className='border-gray-400 p-3 border rounded shadow-md'>
-                      <h3 className='text-lg'>{t.title}</h3>
-                      <p>{t.body}</p>
-                    </div>
-                  </li>
-                );
-              })}
+              <TaskList tasks={tasks} />
             </ul>
           </main>
         </div>
