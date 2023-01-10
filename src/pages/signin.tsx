@@ -5,8 +5,8 @@ import { z } from 'zod';
 import { useSignIn } from '@/atoms/user';
 import { Button } from '@/components/button';
 import { Form } from '@/components/form';
-import { GoogleSignInButton } from '@/components/GoogleSignInButton';
 import { InputControl } from '@/components/input-control';
+import { SignInWithGoogleButton } from '@/features/auth';
 
 type SignInFormValues = {
   email: string;
@@ -67,9 +67,9 @@ const SignInPage: NextPage = () => {
                   <Button isLoading={formState.isSubmitting} type='submit' className='w-full'>
                     ログイン
                   </Button>
-                  <GoogleSignInButton className='mt-5' variant='inverse'>
+                  <SignInWithGoogleButton className='mt-5' variant='inverse'>
                     Googleアカウントでログイン
-                  </GoogleSignInButton>
+                  </SignInWithGoogleButton>
                 </div>
               </div>
             </>

@@ -5,7 +5,7 @@ import { z } from 'zod';
 import { Form } from '@/components/form';
 import { InputControl } from '@/components/input-control';
 import { Button } from '@/components/button';
-import { GoogleSignInButton } from '@/components/GoogleSignInButton';
+import { GoogleSignInButton } from '@/features/auth/signin-with-google';
 import { useSignUp } from '@/globalStates/user';
 
 export const validationSchema = z.object({

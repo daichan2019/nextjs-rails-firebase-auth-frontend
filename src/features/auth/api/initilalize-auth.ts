@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { useUserStateMutators } from '@/atoms/user';
-import { authenticateUser } from '@/features/auth';
+import { verifyToken } from '@/features/auth';
 import { auth } from '@/lib/firebase';
 
 export const useAuth = () => {
@@ -36,7 +36,7 @@ export const useAuth = () => {
       // 4. APIでfirebaseのtoken検証が失敗したらerrorに入るので、userStateを初期値に戻す、localStorageからcurrentUserをremoveする、cookieを削除する
       try {
         const token = await user.getIdToken();
-        const res = await authenticateUser(token);
+        const res = await verifyToken(token);
         const { email, id, name, uid } = res;
         const repositoryUser = {
           id,
