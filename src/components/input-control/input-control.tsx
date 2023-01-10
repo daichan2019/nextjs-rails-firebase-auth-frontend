@@ -1,8 +1,8 @@
 import type { DeepMap, FieldError, FieldValues, UseControllerProps } from 'react-hook-form';
 import { useController } from 'react-hook-form';
 
-import type { InputProps } from '@/components/Input';
-import { Input } from '@/components/Input';
+import type { InputProps } from '@/components/input';
+import { Input } from '@/components/input';
 
 export type InputControlProps<T extends FieldValues> = InputProps & UseControllerProps<T>;
 

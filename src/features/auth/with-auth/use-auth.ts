@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { useUserStateMutators } from '@/atoms/user';
-import { authenticateUser } from '@/lib/auth';
+import { authenticateUser } from '@/features/auth';
 import { auth } from '@/lib/firebase';
 
 export const useAuth = () => {

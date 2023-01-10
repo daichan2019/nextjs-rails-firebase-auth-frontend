@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { z } from 'zod';
 
 import { useSignIn } from '@/atoms/user';
-import { Button } from '@/components/Button';
-import { Form } from '@/components/Form';
+import { Button } from '@/components/button';
+import { Form } from '@/components/form';
 import { GoogleSignInButton } from '@/components/GoogleSignInButton';
-import { InputControl } from '@/components/InputControl';
+import { InputControl } from '@/components/input-control';
 
 type SignInFormValues = {
   email: string;

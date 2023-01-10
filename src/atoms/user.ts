@@ -1,7 +1,8 @@
 import {
   createUserWithEmailAndPassword,
   getRedirectResult,
-  GoogleAuthProvider,  sendEmailVerification,
+  GoogleAuthProvider,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithRedirect,
   signOut,
@@ -12,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 import { BASE_URL } from 'src/config';
 
-import { authenticateUser } from '@/lib/auth';
+import { verifyToken } from '@/features/auth';
 import { auth } from '@/lib/firebase';
 import { catchFirebaseError } from '@/utils/catchFirebaseError';
 
@@ -83,7 +84,7 @@ export const useSignInWithGoogle = () => {
         // オープンリダイレクタ等を回避するために検証が必要だが、ここでは省略
 
         const token = await result.user.getIdToken();
-        const res = await authenticateUser(token);
+        const res = await verifyToken(token);
         const { email, id, name, uid } = res;
         const repositoryUser = {
           id,

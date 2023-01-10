@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import type { ButtonHTMLAttributes, ReactElement } from 'react';
 import { forwardRef } from 'react';
 
-import { Spinner } from '@/components/Spinner';
+import { Spinner } from '@/components/spinner';
 
 const variants = {
   primary: 'bg-blue-600 text-white',

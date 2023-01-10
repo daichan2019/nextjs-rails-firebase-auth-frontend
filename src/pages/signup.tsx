@@ -2,9 +2,9 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { z } from 'zod';
 
-import { Form } from '@/components/Form';
-import { InputControl } from '@/components/InputControl';
-import { Button } from '@/components/Button';
+import { Form } from '@/components/form';
+import { InputControl } from '@/components/input-control';
+import { Button } from '@/components/button';
 import { GoogleSignInButton } from '@/components/GoogleSignInButton';
 import { useSignUp } from '@/globalStates/user';
 

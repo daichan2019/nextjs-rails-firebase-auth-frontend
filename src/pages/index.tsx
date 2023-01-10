@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 
-import { Header } from '@/components/Header';
-import { Sidebar } from '@/components/Sidebar';
+import { Header } from '@/components/header';
+import { Sidebar } from '@/components/sidebar';
 import { WithAuth } from '@/features/auth/with-auth';
 
 const Home: NextPage = () => {

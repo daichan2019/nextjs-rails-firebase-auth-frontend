@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { useUserState } from '@/globalStates/user';
+import { useUserState } from '@/atoms/user';
 
 export const Header: FC = () => {
   const currentUser = useUserState();
