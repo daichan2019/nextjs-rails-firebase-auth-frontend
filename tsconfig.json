@@ -2,8 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/features/*": ["./src/features/*"],
       "@/components/*": ["./src/components/*"],
-      "@/globalStates/*": ["./src/globalStates/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/atoms/*": ["src/atoms/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/utils/*": ["./src/utils/*"],
       "@/styles/*": ["./src/styles/*"],

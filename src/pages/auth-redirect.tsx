@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 
-import { Spinner } from '@/components/ui/ui-elements/Spinner';
-import { useSignInWithGoogle } from '@/globalStates/userState';
+import { Spinner } from '@/components/Spinner';
+import { useSignInWithGoogle } from '@/globalStates/user';
 
 const AuthRedirectPage: NextPage = () => {
   useSignInWithGoogle();

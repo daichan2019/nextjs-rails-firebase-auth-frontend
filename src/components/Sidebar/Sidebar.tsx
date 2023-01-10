@@ -1,6 +1,6 @@
 import type { FC } from 'react';
 
-import { useSignOut } from '@/globalStates/userState';
+import { useSignOut } from '@/globalStates/user';
 
 export const Sidebar: FC = () => {
   const { logout } = useSignOut();

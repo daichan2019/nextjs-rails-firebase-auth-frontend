@@ -2,11 +2,11 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { z } from 'zod';
 
-import { Form } from '@/components/functional/Form';
-import { InputControl } from '@/components/functional/InputControl';
-import { Button } from '@/components/ui/ui-elements/Button';
-import { GoogleSignInButton } from '@/components/ui/ui-elements/GoogleSignInButton';
-import { useSignIn } from '@/globalStates/userState';
+import { useSignIn } from '@/atoms/user';
+import { Button } from '@/components/Button';
+import { Form } from '@/components/Form';
+import { GoogleSignInButton } from '@/components/GoogleSignInButton';
+import { InputControl } from '@/components/InputControl';
 
 type SignInFormValues = {
   email: string;
