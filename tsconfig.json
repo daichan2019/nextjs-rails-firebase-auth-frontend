@@ -3,7 +3,10 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["./src/components/*"],
-      "@/globalStates/*": ["./src/globalStates/*"],
+      "@/features/*": ["src/features/*"],
+      "@/atoms/*": ["src/atoms/*"],
+      "@/config/*": ["src/config/*"],
+      "@/utils/*": ["src/atoms/*"],
       "@/lib/*": ["./src/lib/*"],
       "@/styles/*": ["./src/styles/*"],
       "@/public/*": ["./public/*"]
