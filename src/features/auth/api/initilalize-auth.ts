@@ -25,7 +25,7 @@ export const useAuth = () => {
 
       // 一度ログインに成功している場合は、localStorageにcurrentUserをsetし、その値をsetUserStateする
       if (storage.getUser()) {
-        const loggedInUser = JSON.parse(storage.getUser());
+        const loggedInUser = storage.getUser();
         setUserState(loggedInUser);
         return;
       }
@@ -47,7 +47,7 @@ export const useAuth = () => {
         };
 
         setUserState(repositoryUser);
-        localStorage.setItem('currentUser', JSON.stringify(repositoryUser));
+        storage.setUser(repositoryUser);
       } catch (err) {
         console.error(err);
         router.push('/signin');
