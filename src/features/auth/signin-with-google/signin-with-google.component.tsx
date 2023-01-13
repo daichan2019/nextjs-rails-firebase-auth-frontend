@@ -33,14 +33,14 @@ export const SignInWithGoogleButton: FC<Props> = ({
     <Link
       href='/auth-redirect?redirect_uri=/'
       className={clsx(
-        'flex justify-center items-center border border-gray-300 disabled:opacity-70 disabled:cursor-not-allowed rounded-md shadow-sm font-medium focus:outline-none hover:opacity-80',
+        'flex justify-center items-center border border-gray-300 disabled:opacity-70 disabled:cursor-not-allowed rounded-md shadow-sm font-medium focus:outline-none hover:opacity-80 gap-2',
         variants[variant],
         sizes[size],
         className,
       )}
     >
-      <GoogleIcon className='fill-current transition-colors text-gray-700 hover:text-orange-500 h-6 w-6 mr-2' />
-      {children}
+      <GoogleIcon className='fill-current transition-colors text-gray-700 hover:text-orange-500' />
+      <span>{children}</span>
     </Link>
   );
 };
