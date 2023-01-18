@@ -1,4 +1,4 @@
-import { getApp,getApps } from 'firebase/app';
+import { getApp, getApps } from 'firebase/app';
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 
@@ -21,4 +21,4 @@ const getFirebaseApp = () => {
 
 export const app = getFirebaseApp();
 
-export const auth = getAuth(app);
+export const auth = getAuth();

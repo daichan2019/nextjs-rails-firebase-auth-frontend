@@ -6,9 +6,7 @@ import { SignInWithGoogleButton } from '@/features/auth';
 const SignInPage: NextPage = () => {
   return (
     <div className='max-w-xl px-4 py-12 mx-auto'>
-      <SignInWithGoogleButton className='mt-5' variant='inverse'>
-        Googleアカウントでログイン
-      </SignInWithGoogleButton>
+      <SignInWithGoogleButton variant='inverse'>Googleアカウントでログイン</SignInWithGoogleButton>
       <Link href='/signup'>会員登録がまだの方はこちら</Link>
     </div>
   );

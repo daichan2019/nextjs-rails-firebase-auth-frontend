@@ -1,24 +1,22 @@
 import { onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { useUserStateMutators } from '@/atoms/user';
 import { auth } from '@/lib/firebase';
 
 export const useAuth = () => {
-  const router = useRouter();
   const setUserState = useUserStateMutators();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       // 未ログインの場合
       if (!user) {
-        router.push('/signin');
         setUserState(null);
         return;
       }
 
-      setUserState(user);
+      const userCopy = JSON.parse(JSON.stringify(user));
+      setUserState(userCopy);
     });
 
     return () => {
