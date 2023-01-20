@@ -1,13 +1,14 @@
+import { useRouter } from 'next/router';
 import type { FC, ReactNode } from 'react';
+
+import { Spinner } from '@/components/spinner';
 
 type Props = {
   children: ReactNode;
 };
 
-import { useProtectRoutes } from '@/features/auth';
-
 export const WithAuth: FC<Props> = ({ children }) => {
-  useProtectRoutes();
+  const router = useRouter();
 
   return <>{children}</>;
 };

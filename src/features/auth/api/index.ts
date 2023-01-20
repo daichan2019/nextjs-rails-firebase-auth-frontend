@@ -1,3 +1,4 @@
+export * from './current-user';
 export * from './initialize-auth';
 export * from './protect-routes';
 export * from './signin';
