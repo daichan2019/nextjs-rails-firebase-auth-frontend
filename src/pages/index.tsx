@@ -8,11 +8,11 @@ const Home: NextPage = () => {
   const { logout } = useSignOut();
 
   return (
-    <WithAuth>
+    <div>
       {currentUser && <p>{currentUser.displayName}</p>}
       <button onClick={logout}>ログアウト</button>
-    </WithAuth>
+    </div>
   );
 };
 
-export default Home;
+export default WithAuth(Home);
