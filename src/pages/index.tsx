@@ -1,18 +1,17 @@
 import type { NextPage } from 'next';
 
 import { useUserState } from '@/atoms/user';
-import { useSignOut, WithAuth } from '@/features/auth';
+import { useSignOut } from '@/features/auth';
 
 const Home: NextPage = () => {
   const currentUser = useUserState();
   const { logout } = useSignOut();
-  console.log(currentUser);
 
   return (
-    <WithAuth>
+    <div>
       {currentUser && <p>{currentUser.name}</p>}
       <button onClick={logout}>ログアウト</button>
-    </WithAuth>
+    </div>
   );
 };
 

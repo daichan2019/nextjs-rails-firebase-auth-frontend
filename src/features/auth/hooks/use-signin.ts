@@ -2,6 +2,7 @@ import { getRedirectResult, GoogleAuthProvider, signInWithRedirect } from 'fireb
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
+import { cookie } from '@/features/auth';
 import { auth } from '@/lib/firebase';
 
 // signInWithRedirectによるsignup, signin
@@ -29,6 +30,7 @@ export const useSignInWithGoogle = () => {
         // result がある時は認証済み
         // オープンリダイレクタ等を回避するために検証が必要だが、ここでは省略
 
+        cookie.set();
         const redirectUri = router.query['redirect_uri'] as string | undefined;
         router.push(redirectUri || '/');
       }

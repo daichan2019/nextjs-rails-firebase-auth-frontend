@@ -1,8 +1,15 @@
-export const cookieFn = {
-  set: (user: any) => {
-    window.localStorage.setItem('currentUser', JSON.stringify(user));
+import { destroyCookie, setCookie } from 'nookies';
+
+import { AUTH_COOKIE_VALUE } from '@/config/index';
+
+export const cookie = {
+  set: () => {
+    setCookie(null, AUTH_COOKIE_VALUE, 'true', {
+      maxAge: 30 * 24 * 60 * 60,
+      path: '/',
+    });
   },
   clear: () => {
-    window.localStorage.removeItem('currentUser');
+    destroyCookie(null, AUTH_COOKIE_VALUE);
   },
 };
