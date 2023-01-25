@@ -1,9 +1,7 @@
 import type { NextPage } from 'next';
 
-import { Header } from '@/components/header';
-import { Sidebar } from '@/components/sidebar';
-import { WithAuth } from '@/features/auth/with-auth';
-import { TaskList } from '@/features/tasks';
+import { useUserState } from '@/atoms/user';
+import { useSignOut } from '@/features/auth';
 
 const Home: NextPage = () => {
   const tasks = [
@@ -13,19 +11,9 @@ const Home: NextPage = () => {
   ];
 
   return (
-    <div className='flex-col flex min-h-screen'>
-      <div className='flex flex-1 overflow-x-hidden'>
-        <Sidebar />
-        <div className='w-full'>
-          <Header />
-          <main className='px-4 py-6'>
-            <h2 className='text-2xl font-bold'>My Tasks</h2>
-            <ul className='flex flex-col gap-4 my-3'>
-              <TaskList tasks={tasks} />
-            </ul>
-          </main>
-        </div>
-      </div>
+    <div>
+      {currentUser && <p>{currentUser.name}</p>}
+      <button onClick={logout}>ログアウト</button>
     </div>
   );
 };

@@ -1,9 +1,12 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
 
+import { AUTH_COOKIE_VALUE } from '@/config/index';
+
 export const middleware = (req: NextRequest) => {
   const { cookies, nextUrl, url } = req;
-  const isAuthenticated = cookies.get('isLoggedIn');
+  const isAuthenticated = cookies.get(AUTH_COOKIE_VALUE);
+
   const isAuthUrl =
     nextUrl.pathname === '/signin' ||
     nextUrl.pathname === '/signup' ||
