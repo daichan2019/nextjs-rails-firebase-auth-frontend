@@ -30,7 +30,7 @@ export const useAuth = () => {
       // firebaseでログインが成功したら、以下の処理を行う
       // 1. APIでfirebaseから返却されるtokenを検証
       // 2. tokenの検証が成功したらDBにuserを保存し、APIがuserを返却してくれるので、resをrecoilにsetする
-      // 4. APIでfirebaseのtoken検証が失敗したらerrorに入るので、userStateを初期値に戻す、cookieを削除する
+      // 3. APIでfirebaseのtoken検証が失敗したらerrorに入るので、userStateを初期値に戻す、cookieを削除する
       try {
         const token = await user.getIdToken();
         const res = await fetchCurrentUserFromAPI(token);
