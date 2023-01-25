@@ -18,7 +18,6 @@ export const middleware = (req: NextRequest) => {
   ) {
     return NextResponse.next();
   }
-
   // ログインしていなかったら「/signin」にリダイレクトさせる
   // ログインしていないときは「/signin」「/signup」「/auth-redirect」にはアクセスできる
   if (!isAuthenticated && !isAuthUrl) {

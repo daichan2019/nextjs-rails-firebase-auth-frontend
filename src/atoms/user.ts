@@ -1,6 +1,6 @@
 import { atom, useRecoilValue, useSetRecoilState } from 'recoil';
 
-type UserState = {
+export type UserState = {
   id: number;
   name: string;
   email: string;
