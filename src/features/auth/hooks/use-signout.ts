@@ -12,7 +12,6 @@ export const useSignOut = () => {
     try {
       signOut(auth).then(() => {
         router.push('/signin');
-        setUserState(null);
       });
     } catch (err) {
       console.error(err);

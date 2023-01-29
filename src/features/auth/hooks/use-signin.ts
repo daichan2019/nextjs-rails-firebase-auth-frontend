@@ -1,4 +1,9 @@
-import { getRedirectResult, GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import {
+  getRedirectResult,
+  signInWithCredential,
+  GoogleAuthProvider,
+  signInWithRedirect,
+} from 'firebase/auth';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 

@@ -11,6 +11,7 @@ export const middleware = (req: NextRequest) => {
     nextUrl.pathname === '/signin' ||
     nextUrl.pathname === '/signup' ||
     nextUrl.pathname === '/auth-redirect';
+
   if (
     nextUrl.pathname.startsWith('/_next') ||
     nextUrl.pathname.startsWith('/api') ||
@@ -18,6 +19,7 @@ export const middleware = (req: NextRequest) => {
   ) {
     return NextResponse.next();
   }
+
   // ログインしていなかったら「/signin」にリダイレクトさせる
   // ログインしていないときは「/signin」「/signup」「/auth-redirect」にはアクセスできる
   if (!isAuthenticated && !isAuthUrl) {
